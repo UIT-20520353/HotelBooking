@@ -1,3 +1,4 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import {
   ImageBackground,
@@ -10,8 +11,16 @@ import {
 import background from '../../assets/images/bg-welcome.png';
 import colors from '../../constants/colors';
 import fontWeight from '../../constants/font-weight';
+import { TRootStackParamList } from '../../types/navigation';
 
-const WelComeScreen = () => {
+type WelComeScreenProps = NativeStackScreenProps<
+  TRootStackParamList,
+  'Welcome'
+>;
+
+const WelComeScreen = ({
+  navigation,
+}: WelComeScreenProps): React.JSX.Element => {
   return (
     <ImageBackground style={backgroundStyle} source={background}>
       <View style={contentStyle}>
@@ -20,7 +29,9 @@ const WelComeScreen = () => {
           <Text style={subtitleStyle}>- if not now, when? - </Text>
         </View>
 
-        <TouchableOpacity style={buttonStyle}>
+        <TouchableOpacity
+          style={buttonStyle}
+          onPress={() => navigation.navigate('Home')}>
           <Text style={textButtonStyle}>Start</Text>
         </TouchableOpacity>
       </View>

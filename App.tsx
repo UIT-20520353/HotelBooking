@@ -1,21 +1,27 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import HomeScreen from './app/screens/home';
 import WelComeScreen from './app/screens/welcome';
+import { TRootStackParamList } from './app/types/navigation';
 
-const RootStack = createStackNavigator();
+const RootStack = createStackNavigator<TRootStackParamList>();
 
 function App(): React.JSX.Element {
   return (
     <GestureHandlerRootView style={rootStyle.container}>
       <NavigationContainer>
-        <RootStack.Navigator>
+        <RootStack.Navigator initialRouteName="Welcome">
           <RootStack.Screen
             name="Welcome"
             component={WelComeScreen}
+            options={{ headerShown: false }}
+          />
+          <RootStack.Screen
+            name="Home"
+            component={HomeScreen}
             options={{ headerShown: false }}
           />
         </RootStack.Navigator>
